@@ -42,6 +42,13 @@ select pprize, pname from product  where pprize IN (select avg(pprize) from prod
 
 select avg(pprize),pname from product group by pname
 select pprize, pname from product where pprize <=Any (select avg(pprize) from product group by pname)
+select pprize, pname from product where pprize <=ALL (select avg(pprize) from product group by pname)
+
+-- Average price using self join
+select p.pname,p.pprize from product p
+join product as a
+on a.pid=p.pid
+where a.pprize>=ALL(select avg(pprize) from product group by pname)
 
 -- Subquery in from
 select pname,pprize from (select * from product) as tables
@@ -50,6 +57,8 @@ select pname,pprize from (select * from product) as tables
 select p.pid,p.pname,(select COUNT(pid)from orders where pid =p.pid ) as Total_Order from product p
 
 select p.pid,p.pname,(select COUNT(pid)from orders where pid =p.pid group by pid ) as Total_Order from product p
+
+select p.pid,p.pname, (select count(pid) from orders where pid= p.pid group by pid) as Total from product p
 
 -- using join
 select p.pid,p.pname, count(o.pid) as totalOrder from product p
