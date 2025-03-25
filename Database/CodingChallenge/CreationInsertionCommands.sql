@@ -77,6 +77,7 @@ VALUES
 INSERT INTO Lease (vehicleID, customerID, startDate, endDate, type) 
 VALUES 
 (1, 1, '2023-01-01', '2023-01-05', 'DailyLease'),
+(3, 1, '2023-01-01', '2025-04-05', 'DailyLease'),
 (2, 2, '2023-02-15', '2023-02-28', 'MonthlyLease'),
 (3, 3, '2023-03-10', '2023-03-15', 'DailyLease'),
 (4, 4, '2023-04-20', '2023-04-30', 'MonthlyLease'),
